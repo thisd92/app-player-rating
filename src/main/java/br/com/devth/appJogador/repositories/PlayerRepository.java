@@ -1,4 +1,7 @@
 package br.com.devth.appJogador.repositories;
 
-public interface PlayerRepository {
+import br.com.devth.appJogador.entities.Player;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PlayerRepository extends JpaRepository<Player, Long> {
 }
