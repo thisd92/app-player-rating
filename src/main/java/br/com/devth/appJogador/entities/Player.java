@@ -18,12 +18,13 @@ public class Player {
     public Player(){
     }
 
-    public Player(Long id, String name, String position, int numberMatches) {
+    public Player(Long id, String name, String position, int numberMatches, Match match) {
         this.id = id;
         this.name = name;
         this.position = position;
         this.numberMatches = numberMatches;
         this.rating = 0;
+        this.match = match;
     }
 
     public Long getId() {

@@ -19,11 +19,12 @@ public class Match {
     public Match(){
     }
 
-    public Match(Long id, Date dateMatch, String local, String typeMatch) {
+    public Match(Long id, Date dateMatch, String local, String typeMatch, Player player) {
         this.id = id;
         this.dateMatch = dateMatch;
         this.local = local;
         this.typeMatch = typeMatch;
+        this.player = player;
     }
 
     public Long getId() {
