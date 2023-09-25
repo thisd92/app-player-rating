@@ -3,7 +3,10 @@ package br.com.devth.appJogador.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
+@Entity
+@Table(name = "tb_matches")
 public class Match {
 
     @Id
@@ -12,9 +15,8 @@ public class Match {
     private Date dateMatch;
     private String local;
     private String typeMatch;
-    @ManyToMany
-    @Column(name = "player_id")
-    private Player player;
+    @ManyToMany(mappedBy = "matches")
+    private Set<Player> players;
 
     public Match(){
     }
@@ -24,7 +26,6 @@ public class Match {
         this.dateMatch = dateMatch;
         this.local = local;
         this.typeMatch = typeMatch;
-        this.player = player;
     }
 
     public Long getId() {
@@ -59,6 +60,14 @@ public class Match {
         this.typeMatch = typeMatch;
     }
 
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
@@ -67,5 +76,15 @@ public class Match {
                 ", local='" + local + '\'' +
                 ", typeMatch='" + typeMatch + '\'' +
                 '}';
+    }
+
+    public void addPlayer(Player player) {
+        this.players.add(player);
+        player.getMatches().add(this);
+    }
+
+    public void removePlayer(Player player) {
+        this.players.remove(player);
+        player.getMatches().remove(this);
     }
 }

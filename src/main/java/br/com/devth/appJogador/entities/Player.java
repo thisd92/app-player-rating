@@ -2,6 +2,10 @@ package br.com.devth.appJogador.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
+@Entity
+@Table(name = "tb_players")
 public class Player {
 
     @Id
@@ -12,19 +16,18 @@ public class Player {
     private int numberMatches;
     private double rating;
     @ManyToMany
-    @Column(name = "match_id")
-    private Match match;
+    @JoinColumn(name = "match_id")
+    private Set<Match> matches;
 
     public Player(){
     }
 
-    public Player(Long id, String name, String position, int numberMatches, Match match) {
+    public Player(Long id, String name, String position, int numberMatches) {
         this.id = id;
         this.name = name;
         this.position = position;
         this.numberMatches = numberMatches;
         this.rating = 0;
-        this.match = match;
     }
 
     public Long getId() {
@@ -76,5 +79,23 @@ public class Player {
                 ", numberMatches=" + numberMatches +
                 ", rating=" + rating +
                 '}';
+    }
+
+    public Set<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Set<Match> matches) {
+        this.matches = matches;
+    }
+
+    public void addMatch(Match match) {
+        this.matches.add(match);
+        match.getPlayers().add(this);
+    }
+
+    public void removeMatch(Match match) {
+        this.matches.remove(match);
+        match.getPlayers().remove(this);
     }
 }
