@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### PROD Settings ###
+application-prod.properties

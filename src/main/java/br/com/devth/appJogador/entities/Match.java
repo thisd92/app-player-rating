@@ -12,7 +12,7 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date dateMatch;
+    private String dateMatch;
     private String local;
     private String typeMatch;
     @ManyToMany(mappedBy = "matches")
@@ -21,7 +21,7 @@ public class Match {
     public Match(){
     }
 
-    public Match(Long id, Date dateMatch, String local, String typeMatch, Player player) {
+    public Match(Long id, String dateMatch, String local, String typeMatch, Player player) {
         this.id = id;
         this.dateMatch = dateMatch;
         this.local = local;
@@ -36,11 +36,11 @@ public class Match {
         this.id = id;
     }
 
-    public Date getDateMatch() {
+    public String getDateMatch() {
         return dateMatch;
     }
 
-    public void setDateMatch(Date dateMatch) {
+    public void setDateMatch(String dateMatch) {
         this.dateMatch = dateMatch;
     }
 
